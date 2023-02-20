@@ -1,0 +1,96 @@
+.exp-form-columns-right {
+  padding-top: 6rem;
+}
+
+.hero {
+  margin-bottom: 3rem;
+}
+
+/*
+.expense-item.panel {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+}
+*/
+
+.notes {
+  white-space: pre-line;
+}
+
+/*
+.notes-container {
+  padding: 0rem 2rem 1rem 2rem;
+}
+
+.created-container,
+.duedate-container,
+.amount-container,
+.description-container,
+.filters-container {
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+*/
+
+.description-container,
+.notes-container,
+.sortby-container,
+#filter {
+  padding-left: 1rem;
+}
+
+.description-container,
+.dueDate-container {
+  padding-top: 1rem;
+}
+
+.search-container {
+  padding-left: 0.5rem;
+  padding-right: 11rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.columns .button {
+  margin-top: auto;
+}
+
+.delete-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+#deletebutton {
+  float: right;
+  margin-right: 1rem;
+}
+
+.notes-container {
+  padding-top: 2rem;
+}
+
+.link:hover {
+  background-color: rgb(240, 248, 176);
+  cursor: pointer;
+}
+
+.create-link {
+  float: right;
+}
+
+.text-red {
+  color: red;
+}
+
+#search {
+  padding: 0.5rem;
+}
+
+.txtalign {
+  text-align: center;
+}
