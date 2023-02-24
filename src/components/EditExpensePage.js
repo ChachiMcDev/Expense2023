@@ -1,44 +1,26 @@
 import { useParams } from "react-router-dom";
 import ExpenseForm from './ExpenseForm'
 import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux'
-import { setEditExpense } from '../store'
-import { useEffect } from "react";
-
-
-
+import { useFetchExpenseByIdQuery } from '../store'
 
 const EditExpensePage = () => {
     const params = useParams();
-    const dispatch = useDispatch()
 
+    const { uid } = useSelector((state) => state.auth)
+    const { data, error, isFetching } = useFetchExpenseByIdQuery({ uid: uid, expenseId: params.id })
 
-    const { expenses } = useSelector(({ form, expenses: { data } }) => {
-
-        return {
-            expenses: data
-        }
-    })
-
-    const expense = expenses.filter((exp) => exp.id === params.id)
-
-
-
-    useEffect(() => {
-
-        dispatch(setEditExpense(expense[0]))
-
-
-    }, [])
-
-
+    let content
+    if (isFetching) {
+        content = <p>Fetching Expense...</p>
+    } else if (error) {
+        content = <div>Error fetching Expense: {error}</div>
+    } else {
+        content = <ExpenseForm editExpense={data} />
+    }
 
     return (
         <div>
-
-
-            <ExpenseForm />
-
+            {content}
         </div>
     )
 }

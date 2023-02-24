@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { logout } from '../store';
+import { logout, useFetchExpensesapiQuery } from '../store';
 import { useDispatch } from 'react-redux';
 import selectTotalExpenses from '../selectors/expenses-total'
 import numeral from 'numeral';
@@ -10,12 +10,26 @@ import { useNavigate } from "react-router-dom"
 const ExpenseSummary = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { data } = useSelector((state) => state.expenses)
+    // const { data } = useSelector((state) => state.expenses)
+    const { uid } = useSelector((state) => state.auth)
+    const { data, error, isFetching } = useFetchExpensesapiQuery(uid)
 
-    const totalExpenses = selectTotalExpenses(data)
-    const expenseCount = data.length
-    const expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
-    const formattedExpenseTotal = numeral(totalExpenses / 100).format('$0,0.00');
+    let totalExpenses,
+        expenseCount,
+        expenseWord,
+        formattedExpenseTotal
+
+    if (isFetching) {
+        expenseCount = <p>Loading Data...</p>
+    } else if (error) {
+
+    } else {
+        totalExpenses = selectTotalExpenses(data)
+        expenseCount = data.length
+        expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
+        formattedExpenseTotal = numeral(totalExpenses / 100).format('$0,0.00');
+
+    }
 
     const startLogout = () => {
         signOut(auth).then(() => {
@@ -30,9 +44,9 @@ const ExpenseSummary = () => {
     return (
         <section className="hero is-info">
             <div className="hero-body txtalign">
-                <p className="title">
+                <div className="title">
                     Viewing {expenseCount} {expenseWord} totalling {formattedExpenseTotal}
-                </p>
+                </div>
             </div>
             <button onClick={() => startLogout()}>Log Out</button>
         </section>

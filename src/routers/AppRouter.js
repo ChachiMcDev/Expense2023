@@ -1,83 +1,44 @@
 import LoginPage from '../components/LoginPage';
-//import PrivateRoute from './PrivateRoute'
-//import Route from '../components/Route';
-//import createHistory from 'history/createBrowserHistory';
-
-
 import NotFoundPage from '../components/NotFoundPage'
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import HelpPage from '../components/HelpPage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom"
+import { createBrowserHistory } from "history"
+import PrivateRoute from './PrivateRoute';
 
 
-import { createBrowserRouter } from "react-router-dom"
+export const history = createBrowserHistory()
+
+const AppRouter = () => {
+
+    return (
+        <>
+            <Router history={history}>
+                <Routes>
+                    <Route index element={<LoginPage />} />
+                    <Route path='/' element={<LoginPage />} />
+                    <Route path='/dashboard' element={<PrivateRoute>
+                        <ExpenseDashboardPage />
+                    </PrivateRoute>} />
+                    <Route path='/create' element={<PrivateRoute>
+                        <AddExpensePage />
+                    </PrivateRoute>} />
+                    <Route path='/edit/:id' element={<PrivateRoute>
+                        <EditExpensePage />
+                    </PrivateRoute>} />
+                    <Route path='/help' element={<HelpPage />} />
+                    <Route path='*' element={<NotFoundPage />} />
+                </Routes>
+            </Router>
+
+        </>
+    )
+}
 
 
-
-// <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
-
-// <PrivateRoute path="/create" component={AddExpensePage} />
-
-// <PrivateRoute path="/edit/:id" component={EditExpensePage} />
-
-//browser router needs a single root element!
-
-
-
-const AppRouter = createBrowserRouter([
-    {
-        path: "/",
-        element: <LoginPage />
-    }, {
-        path: "/dashboard",
-        element: <ExpenseDashboardPage />
-    }, {
-        path: "/create",
-        element: <AddExpensePage />
-    }, {
-        path: "/edit/:id",
-        element: <EditExpensePage />
-    }, {
-        path: "help",
-        element: <HelpPage />
-    }, {
-        path: '*',
-        element: <NotFoundPage />
-    }
-]);
-
-
-// const AppRoutera = () => (
-
-
-//     <div>
-//         <Header />
-//         <Router>
-//             <Route path="/" exact={true}>
-//                 <LoginPage />
-//             </Route>
-//             <Route path='/dashboard'>
-//                 <ExpenseDashboardPage />
-//             </Route>
-//             <Route path='/create'>
-//                 <AddExpensePage />
-//             </Route>
-//             <Route path='/edit/:id'>
-//                 <EditExpensePage />
-//             </Route>
-
-//             <Route path="/help">
-//                 <HelpPage />
-//             </Route>
-//             <Route>
-//                 <NotFoundPage />
-//             </Route>
-//         </Router>
-//         <Footer />
-//     </div>
-
-// )
 
 
 

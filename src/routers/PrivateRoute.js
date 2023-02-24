@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 const PrivateRoute = ({ children }) => {
 
     const { uid } = useSelector((state) => {
-        return state.expenses
+        return state.auth
     })
 
     if (!uid) {

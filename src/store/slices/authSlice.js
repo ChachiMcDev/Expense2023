@@ -19,7 +19,7 @@ const authSlice = createSlice({
         },
         login(state, action) {
             console.log('hello im logging in')
-            state.uid = action.payload.uid
+            state.uid = action.payload
         },
         startLogOut(state, action) {
             signOut(auth).then(() => {

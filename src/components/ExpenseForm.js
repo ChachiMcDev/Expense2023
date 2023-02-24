@@ -1,92 +1,99 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react';
-import { changeDescription, changeNote, changeAmount, addExpense, editExpense, changeDueDate } from '../store'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react';
+import { useEditExpenseMutation, useAddExpenseMutation } from '../store'
 import { useNavigate } from 'react-router-dom';
 import { Calendar } from 'react-date-range';
-
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ editExpense }) => {
 
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const { id, description, note, amount, error, dueDate } = useSelector((state) => {
-        return state.form
+    const { uid } = useSelector((state) => state.auth)
+    const [expense, setExpense] = useState({
+        description: '',
+        amount: 0,
+        note: '',
+        dueDate: '',
+        id: ''
     })
+    const [submitAdd] = useAddExpenseMutation()
+    const [submitEdit] = useEditExpenseMutation()
 
-    //date={new Date(dueDate) || new Date()}
+
+    useEffect(() => {
+        if (editExpense) {
+            setExpense({
+                ...editExpense
+            })
+        }
+    }, [editExpense])
+
     const handleDescriptionChange = (e) => {
-        dispatch(changeDescription(e.target.value))
+        setExpense({
+            ...expense,
+            description: e.target.value
+        })
     }
 
     const handleNoteChange = (e) => {
-        dispatch(changeNote(e.target.value))
+        setExpense({
+            ...expense,
+            note: e.target.value
+        })
     }
 
     const handleAmountChange = (e) => {
-        dispatch(changeAmount(parseInt(e.target.value) || 0))
+        setExpense({
+            ...expense,
+            amount: parseInt(e.target.value) || 0
+        })
     }
-
-    //const [startDate, setStartDate] = useState(new Date())
 
 
     const handleOnDateChange = (date) => {
-        dispatch(changeDueDate(new Date(date).toUTCString()))
-        //setStartDate(date)
-        //format(date1, 'MM/dd/yyyy')
-
+        setExpense({
+            ...expense,
+            dueDate: new Date(date).toUTCString()
+        })
     }
 
-    const navigate = useNavigate()
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!description || !amount) {
-            return error
-        }
-        if (id) {
 
-            dispatch(editExpense({
-                id,
-                description,
-                note,
-                amount,
-                dueDate
-            }))
-        } else {
-            dispatch(addExpense({
-                description,
-                note,
-                amount,
-                dueDate
-            }))
+        if (!expense.description || !expense.amount) {
+            return
         }
-        // dispatch(clearFormState())
+        if (editExpense) {
+            submitEdit({ expense: expense, uid: uid })
+        } else {
+            submitAdd({ expense: expense, uid: uid })
+        }
+
         navigate('/dashboard')
     }
 
     return (
         <div className="container is-fluid">
-
-
             <div className='columns exp-form-columns'>
                 <div className="column is-half exp-form-columns-left">
-                    <h1 className='title is-10'>{id ? 'Edit Expense' : 'Add Expense'}</h1>
+                    <h1 className='title is-10'>{editExpense ? 'Edit Expense' : 'Add Expense'}</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="field-group">
                             <div className="field">
-
                                 <label className="label">Description</label>
-                                <input type="text" className="input is-expanded" value={description} onChange={handleDescriptionChange} />
+                                <input type="text" className="input is-expanded" value={expense.description} onChange={handleDescriptionChange} />
                             </div>
                             <div className="field">
                                 <label className="label">Note</label>
-                                <textarea type="text" className="textarea input is-expanded" value={note} onChange={handleNoteChange} />
+                                <textarea type="text" className="textarea input is-expanded" value={expense.note} onChange={handleNoteChange} />
                             </div>
                             <div className="field">
                                 <label className="label">Amount</label>
-                                <input type="number" className="input is-expanded" value={amount} onChange={handleAmountChange} />
+                                <input type="number" className="input is-expanded" value={expense.amount} onChange={handleAmountChange} />
                             </div>
                             <div className="field">
                                 <button className="button is-link">Submit</button>
@@ -95,23 +102,14 @@ const ExpenseForm = () => {
                     </form>
                 </div>
                 <div className="column is-half exp-form-columns-right">
-
-
                     <h2 className='title is-5'>Select Due Date...</h2>
-
                     <div>
                         <Calendar
-                            date={dueDate ? new Date(dueDate) : new Date()}
+                            date={expense.dueDate ? new Date(expense.dueDate) : new Date()}
                             onChange={handleOnDateChange}
                         />
                     </div>
-
-
-
-
                 </div>
-
-
             </div>
         </div>
     )
