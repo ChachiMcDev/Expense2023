@@ -1,17 +1,16 @@
 
-
+import Navbar1 from "./Navbar1"
 const Header = () => {
 
     return (
         <section className="hero is-primary">
-            <div className="hero-body">
+            <div id="hero-body" className="hero-body">
                 <p className="title">
-                    Header
+                    Expense App - React/Redux/Redux-Toolkit
                 </p>
-                <p className="subtitle">
-                    Some header stuff here
-                </p>
+
             </div>
+            <Navbar1 />
         </section>
     )
 }

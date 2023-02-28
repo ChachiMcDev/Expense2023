@@ -37,7 +37,7 @@ const ExpensePageFilter = () => {
 
     return (
         <div className="container">
-            <div className="panel filters-container">
+            <div className="filters-container">
                 <div className="panel">
                     <p id='filter' className="panel-heading">
                         Filter Expenses
@@ -54,30 +54,31 @@ const ExpensePageFilter = () => {
                         </div>
 
                     </div>
+                    <div className="columns">
+                        <div className="list-header column">
+                            <div className="sortby-container">
+                                <label className="label">Sort By:</label>
+                                <select className="select is-primary" value={sortBy} onChange={handleOnSortByChange}>
+                                    <option value="date">Date</option>
+                                    <option value="amount" >Amount</option>
+                                    <option value="dueDate" >Due Date</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="list-header column">
+                            <div>
+                                <label className="label">Filter by Date Range</label>
+                                <DateRangePicker
+                                    ranges={[selectionRange]}
+                                    onChange={handleDatesChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
-                <div className="columns is-mobile">
-                    <div className="list-header column">
-                        <div className="sortby-container">
-                            <label className="label">Sort By:</label>
-                            <select className="select is-primary" value={sortBy} onChange={handleOnSortByChange}>
-                                <option value="date">Date</option>
-                                <option value="amount" >Amount</option>
-                                <option value="dueDate" >Due Date</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="list-header column">
-                        <div>
-                            <label className="label">Filter by Date Range</label>
-                            <DateRangePicker
-                                ranges={[selectionRange]}
-                                onChange={handleDatesChange}
-                            />
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 const ExpenseSummary = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const { data } = useSelector((state) => state.expenses)
+
     const { uid } = useSelector((state) => state.auth)
     const { data, error, isFetching } = useFetchExpensesapiQuery(uid)
 

@@ -28,10 +28,10 @@ function App() {
   });
 
   return (
-    <div className="container is-fluid">
-      <Header />
+    <div className="container is-fluid content">
+
       <AppRouter />
-      <Footer />
+
     </div>
   )
 }

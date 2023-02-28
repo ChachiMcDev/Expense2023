@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 .exp-form-columns-right {
   padding-top: 6rem;
 }
@@ -6,45 +11,43 @@
   margin-bottom: 3rem;
 }
 
-/*
-.expense-item.panel {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: left;
+#login-page {
+  min-height: calc(100vh - 70px);
+  background-image: url('/public/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-*/
+
+.login-buttons {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.log-in {
+  margin-right: 1rem;
+}
+
+.log-out {
+  margin-left: 1rem;
+}
+
+#logo-override {
+  max-height: 4.75rem;
+}
 
 .notes {
   white-space: pre-line;
 }
 
-/*
-.notes-container {
-  padding: 0rem 2rem 1rem 2rem;
-}
-
-.created-container,
-.duedate-container,
-.amount-container,
-.description-container,
-.filters-container {
-  padding: 0rem 1rem 1rem 1rem;
-}
-
-*/
-
-.description-container,
-.notes-container,
 .sortby-container,
 #filter {
   padding-left: 1rem;
 }
 
-.description-container,
-.dueDate-container {
+.description-container {
   padding-top: 1rem;
+  padding-left: 1rem;
 }
 
 .search-container {
@@ -59,19 +62,12 @@
 }
 
 .delete-button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
+  padding-top: 3rem;
 }
 
 #deletebutton {
   float: right;
   margin-right: 1rem;
-}
-
-.notes-container {
-  padding-top: 2rem;
 }
 
 .link:hover {
@@ -93,4 +89,84 @@
 
 .txtalign {
   text-align: center;
+}
+
+/* Modal */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.inset-40 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
+.flex {
+  display: flex;
+}
+.h-full {
+  height: 100%;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.rdrDefinedRangesWrapper {
+  width: 153px !important;
+}
+.rdrDateRangePickerWrapper {
+  padding-right: 2rem;
+}
+
+#hero-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .rdrDateRangePickerWrapper {
+    flex-direction: column;
+  }
+  .delete-button-container {
+    margin-bottom: 3rem;
+  }
 }

@@ -1,7 +1,4 @@
-//import LinkTo from "./LinkTo"
-import { Link } from "react-router-dom"
-// import { useDispatch } from 'react-redux'
-// import { startLogin } from '../store'
+
 import { provider, auth, signInWithPopup, signOut } from '../firebase/firebase'
 import { useNavigate } from "react-router-dom"
 
@@ -32,15 +29,13 @@ const LoginPage = () => {
     }
 
     return (
-        <div>
-            <p> Login here</p>
-            <Link to={"/dashboard"}>
-                <button>Log In</button>
-            </Link>
+        <div id="login-page">
+            <div className="fixed login-buttons">
+                <button className='log-in' onClick={() => startLogin()}>Login</button>
 
-            <button onClick={() => startLogin()}>hmmmm login</button>
+                <button className='log-out' onClick={() => startLogout()}>Log Out</button>
+            </div>
 
-            <button onClick={() => startLogout()}>logyouout</button>
         </div>
     )
 }

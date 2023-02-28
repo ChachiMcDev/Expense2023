@@ -14,9 +14,9 @@ const ExpenseForm = ({ editExpense }) => {
     const { uid } = useSelector((state) => state.auth)
     const [expense, setExpense] = useState({
         description: '',
-        amount: 0,
+        amount: '',
         note: '',
-        dueDate: '',
+        dueDate: new Date().toLocaleDateString(),
         id: ''
     })
     const [submitAdd] = useAddExpenseMutation()
@@ -56,7 +56,7 @@ const ExpenseForm = ({ editExpense }) => {
     const handleOnDateChange = (date) => {
         setExpense({
             ...expense,
-            dueDate: new Date(date).toUTCString()
+            dueDate: new Date(date).toLocaleDateString()
         })
     }
 

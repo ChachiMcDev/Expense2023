@@ -5,17 +5,17 @@ import ExpenseSummary from "./ExpenseSummary"
 const ExpenseDashboardPage = () => {
 
     return (
-        <div className="container is-fluid">
+        <div >
             <div >
                 <ExpenseSummary />
                 <div className="columns">
                     <div className="column is-half">
-                        <div className="container is-fluid">
+                        <div className="container">
                             <ExpenseList />
                         </div>
                     </div>
                     <div className="column is-half">
-                        <div className="container is-fluid">
+                        <div className="container">
                             <ExpensePageFilter />
                         </div>
 
