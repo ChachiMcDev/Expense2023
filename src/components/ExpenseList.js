@@ -23,6 +23,7 @@ const ExpenseList = () => {
     } else {
 
         const selectedExpenses = selectExpenses(data, searchTerm, sortBy, startDate, endDate, dueDate)
+        console.log(selectedExpenses)
         content = selectedExpenses.map((expense) => {
             return <ExpenseItem key={expense.id} expense={expense} uid={uid} />
         })

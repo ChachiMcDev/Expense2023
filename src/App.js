@@ -1,13 +1,13 @@
 
 import AppRouter from './routers/AppRouter';
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import { useEffect, useState } from 'react';
 import { login, logout } from './store';
 import { useDispatch } from 'react-redux';
 import './App.css';
-import { auth, onAuthStateChanged } from './firebase/firebase'
+import { auth, onAuthStateChanged, getRedirectResult } from './firebase/firebase'
 
 
 function App() {
@@ -26,6 +26,23 @@ function App() {
       return <Navigate replace to="/" />
     }
   });
+  // const [getyo, setgetyo] = useState()
+
+  // useEffect(() => {
+  //   nav('/dashboard')
+  // }, getyo)
+
+  // getRedirectResult(auth).then((result) => {
+  //   if (result) {
+  //     setgetyo(true)
+  //     dispatch(login(result.user.uid))
+  //     return <Navigate replace to="/dashboard" />
+  //   }
+  // }).catch((error) => {
+  //   console.log(error.message)
+  // })
+
+
 
   return (
     <div className="container is-fluid content">

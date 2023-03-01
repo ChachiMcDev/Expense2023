@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged, getRedirectResult } from "firebase/auth";
 import { getDatabase, ref, set, get, push, update, remove, child, onValue } from 'firebase/database'
 
 
@@ -29,6 +29,8 @@ export {
     auth,
     onAuthStateChanged,
     signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     signOut,
     child,
     set,
