@@ -45,7 +45,7 @@ const ExpenseSummary = () => {
         <section className="hero is-info">
             <div className="hero-body txtalign">
                 <div className="title">
-                    Viewing {expenseCount} {expenseWord} totalling {formattedExpenseTotal}
+                    You have {expenseCount} {expenseWord} totalling {formattedExpenseTotal}
                 </div>
             </div>
             <button onClick={() => startLogout()}>Log Out</button>
